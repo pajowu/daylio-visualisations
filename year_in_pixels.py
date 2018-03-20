@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import calc
 
 if __name__ == "__main__":
