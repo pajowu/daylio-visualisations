@@ -20,7 +20,6 @@ def day_avg(vals, style="trapezium"):
         for i in range(1, len(vals)):
             total += ((vals[i][1] + vals[i - 1][1]) / 2) * \
                 (vals[i - 1][0] - vals[i][0])
-        print(total / diff)
         return total / diff
     else:
         v = [x[1] for x in vals]
