@@ -66,8 +66,8 @@ def read_random():
 							random.randint(0, 59),
 							random.randint(0, 59))
 					).timestamp(), int(5 * random.random()) + 1)
-					for i in range(random.randint(0, 10))], key=lambda x: x[0])
-				if random_moods:
+					for i in range(random.randint(1, 10))], key=lambda x: x[0])
+				if random_moods and random.random() > 0.2:
 					dates[date.toordinal()] = random_moods
 	return dates
 
