@@ -60,11 +60,11 @@ def read_random():
         for week in month:
             for date in week:
                 random_moods = sorted([
-                    (datetime.combine(date,
-                                      datetime.time(random.randint(24),
-                                                    random.randint(60),
-                                                    random.randint(60))
-                                      ).toordinal(), int(5 * random.random()) + 1)
+                    (datetime.datetime.combine(date,
+                                      datetime.time(random.randint(0,23),
+                                                    random.randint(0,59),
+                                                    random.randint(0,59))
+                                      ).timestamp(), int(5 * random.random()) + 1)
                     for i in range(random.randint(0, 10))], key=lambda x: x[0])
                 if random_moods:
                     dates[date.toordinal()] = random_moods
