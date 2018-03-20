@@ -53,3 +53,14 @@ The calculation is done on a daily basis, i.e. it does not use the values of oth
 ```
 python3 average_calculation.py
 ```
+
+### Entries per day
+
+The power of trapezoidal average calculation and mood tracking in general is stronger the more often the mood is tracked.
+`entries_per_day.py` plots the amount of tracked entries per day.
+
+![Plot of the entries per day](examples/entries_per_day.png)
+
+```
+python3 entries_per_day.py
+```
