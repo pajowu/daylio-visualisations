@@ -14,12 +14,21 @@ pip install -r requirements.txt
 
 ### Getting the data
 
-Currently the scripts assume that you have an `entries.db` in the current working directory. You can get this file from a rooted phone with
+The scripts assume that you have an `entries.db` in the current working directory.
+
+### Non-rooted phone
+
+The file can be extracted from an android phone using adb backup by running `export_from_backup.py`.
+You need to enable USB Debugging first and authorize your computer with your phone.
+
+### Rooted phone
+You can get this file from a rooted phone with
 
 ```
 adb shell 'su -c "cat /data/data/net.daylio/databases/entries.db"' > entries.db
 ```
 
+### Simulated data
 To run the scripts without actual data, run them with the `--random-data` option.
 
 ## Visualisations
