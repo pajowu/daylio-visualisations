@@ -8,18 +8,23 @@ import random
 import sys
 
 
-def day_avg(vals):
-    if not vals:
-        return 0
-    if len(vals) == 1:
-        return vals[0][1]
+def day_avg(vals, style="trapezium"):
+    if style == "trapezium":
+        if not vals:
+            return 0
+        if len(vals) == 1:
+            return vals[0][1]
 
-    total = 0
-    diff = vals[0][0] - vals[-1][0]
-    for i in range(1, len(vals)):
-        total += ((vals[i][1] + vals[i-1][1])/2) * (vals[i-1][0] - vals[i][0])
-    print(total/diff)
-    return total / diff
+        total = 0
+        diff = vals[0][0] - vals[-1][0]
+        for i in range(1, len(vals)):
+            total += ((vals[i][1] + vals[i - 1][1]) / 2) * \
+                (vals[i - 1][0] - vals[i][0])
+        print(total / diff)
+        return total / diff
+    else:
+        v = [x[1] for x in vals]
+        return sum(v) / len(v)
 
 
 def get_color(mood):
@@ -58,8 +63,8 @@ def read_random():
                 random_moods = sorted([
                     (datetime.combine(date,
                                       datetime.time(random.randint(24),
-                                      random.randint(60),
-                                      random.randint(60))
+                                                    random.randint(60),
+                                                    random.randint(60))
                                       ).toordinal(), int(5 * random.random()) + 1)
                     for i in range(random.randint(0, 10))], key=lambda x: x[0])
                 if random_moods:
