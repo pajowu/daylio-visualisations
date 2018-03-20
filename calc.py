@@ -84,7 +84,7 @@ def month_name(m):
 	return calendar.month_name[(m % 12) + 1]
 
 
-def plot_days(data, out_file=None):
+def plot_days_in_pixels(data, out_file=None):
 	first_year = datetime.datetime.fromordinal(sorted(data.keys())[0]).year
 	last_year = datetime.datetime.fromordinal(sorted(data.keys())[-1]).year
 
@@ -112,10 +112,10 @@ def plot_days(data, out_file=None):
 	crop = data[rows.min():rows.max() + 1]
 	labels = list(map(month_name, range(rows.min(), rows.max() + 1)))
 
-	plot_months(crop, labels, out_file)
+	plot_months_in_pixels(crop, labels, out_file)
 
 
-def plot_months(data, labels, out_file=None):
+def plot_months_in_pixels(data, labels, out_file=None):
 	plt.imshow(np.fliplr(np.rot90(data, k=3)))
 	plt.xticks(np.arange(len(labels)), labels, rotation=90)
 	plt.yticks(np.arange(31, step=2), np.arange(1, 32, step=2))
