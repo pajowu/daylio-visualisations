@@ -9,13 +9,22 @@ import sys
 
 
 def day_avg(vals):
-    v = [x[1] for x in vals]
-    return sum(v) / len(v)
+    if not vals:
+        return 0
+    if len(vals) == 1:
+        return vals[0][1]
+
+    total = 0
+    diff = vals[0][0] - vals[-1][0]
+    for i in range(1, len(vals)):
+        total += ((vals[i][1] + vals[i-1][1])/2) * (vals[i-1][0] - vals[i][0])
+    print(total/diff)
+    return total / diff
 
 
 def get_color(mood):
     mood_colors = {5: "#6e7a7c", 4: "#5579a6", 3: "#8f54a5",
-                   2: "#42a766", 1: "#fb8c00"}
+                   2: "#42a766", 1: "#fb8c00", 0: "#ff0000"}
     color = mood_colors[round(mood)]
     return tuple(int(color[i:i + 2], 16) / 255 for i in (1, 3, 5))
 
@@ -46,8 +55,13 @@ def read_random():
     for month in calendar.Calendar().yeardatescalendar(datetime.datetime.now().year, width=12)[0]:
         for week in month:
             for date in week:
-                random_moods = [(0, int(5 * random.random()) + 1)
-                                for i in range(random.randint(0, 10))]
+                random_moods = sorted([
+                    (datetime.combine(date,
+                                      datetime.time(random.randint(24),
+                                      random.randint(60),
+                                      random.randint(60))
+                                      ).toordinal(), int(5 * random.random()) + 1)
+                    for i in range(random.randint(0, 10))], key=lambda x: x[0])
                 if random_moods:
                     dates[date.toordinal()] = random_moods
     return dates
