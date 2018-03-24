@@ -5,7 +5,7 @@ import textwrap
 from matplotlib import pyplot
 import calc
 
-VIZS = ["year_in_pixels", "average_calculation", "entries_per_day"]
+VIZS = ["year_in_pixels", "average_calculation", "entries_per_day", "mood_graph"]
 
 
 def load_viz(viz, mod_dir="modules"):
@@ -18,6 +18,8 @@ if __name__ == '__main__':
 	                    default="year_in_pixels",
 	                    help=('What visualizations type shall be run. '
 	                          'For a list of available ones use `--type LIST`'))
+
+	parser.add_argument('--random-data', action="store_true")
 
 	args = parser.parse_args()
 
@@ -34,9 +36,3 @@ if __name__ == '__main__':
 		data = calc.read_data()
 		module.plot(pyplot, data)
 		pyplot.show()
-
-"""
-
-    plt.tight_layout()
-    plt.savefig("entries_per_day.png", dpi=200)
-"""

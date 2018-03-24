@@ -50,7 +50,7 @@ def read_sqlite(file):
 		for row in c.execute('SELECT date_time,mood FROM table_entries ORDER BY date_time ASC'):
 			data[
 				datetime.datetime.fromtimestamp(row[0] / 1000).toordinal()
-			].append((row[0], mood_mapping[row[1]]))
+			].append((row[0]/1000, mood_mapping[row[1]]))
 	return data
 
 
@@ -123,3 +123,61 @@ def plot_months_in_pixels(plt, data, labels, out_file=None):
 	else:
 		plt.tight_layout()
 		plt.savefig(out_file, dpi=200)
+
+
+def frange(start, stop):
+	nstart, nstop = start + 0.5, stop + 0.5
+	if start == stop:
+		return None
+	istart = int(nstart)
+	istop = int(nstop)
+
+	if istart == istop:
+		values = []
+	elif start < stop:
+		values = list(range(istart, istop + 1))
+		values = [x for x in values if start < x - 0.5 < stop]
+	else:
+		values = list(range(istart, istop - 1, -1))
+		values = [x for x in values if start > x - 0.5 > stop]
+
+	return [start] + [x - 0.5 for x in values] + [stop]
+
+
+def plot_mood_graph(plt, data, **kwargs):
+	""" Plot the mood over time, coloring each mood in its color.
+	Arguments:
+		:data: A list of (timestamp, mood) tuples
+	"""
+	for i in range(1, len(data)):
+		old_mood = data[i - 1]
+		new_mood = data[i]
+		steps = frange(old_mood[1], new_mood[1])
+		if not steps:
+			plt.plot([
+				datetime.datetime.fromtimestamp(old_mood[0]),
+				datetime.datetime.fromtimestamp(new_mood[0])
+			], [
+				old_mood[1],
+				new_mood[1]
+			], color=get_color(new_mood[1]), **kwargs)
+			continue
+		step_time = (old_mood[0] - new_mood[0]) / (old_mood[1] - new_mood[1])
+		prev_step = (datetime.datetime.fromtimestamp(old_mood[0]), old_mood[1])
+		for step in steps:
+			st = datetime.datetime.fromtimestamp(old_mood[0] - (step_time * (old_mood[1] - step)))
+			plt.plot([
+				prev_step[0],
+				st
+			], [
+				prev_step[1],
+				step
+			], color=get_color(step / 2 + prev_step[1] / 2), **kwargs)
+			prev_step = (st, step)
+
+	plot_mood_axis(plt)
+
+
+def plot_mood_axis(plt):
+	plt.yticks(np.arange(1, 5, 1), ['Rad', 'Good', 'Meh', 'Bad', 'Awful'])
+	plt.gca().invert_yaxis()

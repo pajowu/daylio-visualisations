@@ -33,6 +33,17 @@ To run the scripts without actual data, run them with the `--random-data` option
 
 ## Visualisations
 
+### Mood graph
+
+The mood graph is the classical visualisation chosen by daylio.
+It simply shows a graph of all the daily averages and colors the parts of the graph in the mood colors.
+
+![Plot of the entries per day](examples/mood_graph.png)
+
+```
+./main.py -t mood_graph
+```
+
 ### Year in pixels
 
 The first visualisation is using matplotlib to generate grid with one row for each month and one pixel for each day.
