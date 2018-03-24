@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-import matplotlib.pyplot as plt
+"""Compares two ways of calculating the daily mood average."""
 import calc
 import datetime
 
 
-def plot(style):
+def plot_average(plt, data, style):
     days = {}
     for d, vs in data.items():
         days[d] = calc.day_avg(vs, style)
@@ -13,10 +13,7 @@ def plot(style):
     plt.plot(x, y, label=style)
 
 
-if __name__ == "__main__":
-    data = calc.read_data()
-    plot("trapezium")
-    plot("old")
-    legend = plt.legend()
-    plt.tight_layout()
-    plt.savefig("average_calculation.png", dpi=200)
+def plot(plt, data):
+    for style in ["trapezium", "mean"]:
+        plot_average(plt, data, style)
+    plt.legend()

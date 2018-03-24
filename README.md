@@ -43,7 +43,7 @@ For all other pixels the colorscheme from daylio is used.
 To calculate your year in pixels, run
 
 ```
-python3 year_in_pixels.py
+./main.py -t year_in_pixels
 ```
 
 The output image is saved into `year_in_pixels.png`.
@@ -60,7 +60,7 @@ The calculation is done on a daily basis, i.e. it does not use the values of oth
 ![Difference in mood average using the two methos](examples/average_calculation.png)
 
 ```
-python3 average_calculation.py
+./main.py -t average_calculation
 ```
 
 ### Entries per day
@@ -71,5 +71,5 @@ The power of trapezoidal average calculation and mood tracking in general is str
 ![Plot of the entries per day](examples/entries_per_day.png)
 
 ```
-python3 entries_per_day.py
+./main.py -t entries_per_day
 ```
