@@ -56,7 +56,7 @@ def read_sqlite(file):
 
 def read_random():
 	dates = {}
-	for month in calendar.Calendar().yeardatescalendar(datetime.datetime.now().year, width=12)[0]:
+	for month in calendar.Calendar().yeardatescalendar(datetime.datetime.now().year, width=6)[0]:
 		for week in month:
 			for date in week:
 				random_moods = sorted([
@@ -65,7 +65,7 @@ def read_random():
 							random.randint(0, 59),
 							random.randint(0, 59))
 					).timestamp(), int(5 * random.random()) + 1)
-					for i in range(random.randint(1, 10))], key=lambda x: x[0])
+					for i in range(random.randint(0, 5))], key=lambda x: x[0])
 				if random_moods and random.random() > 0.2:
 					dates[date.toordinal()] = random_moods
 	return dates
