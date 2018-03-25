@@ -43,6 +43,7 @@ if __name__ == '__main__':
 				docstring = module.__doc__
 			print(textwrap.fill("{}: {}".format(viz, docstring),
 				initial_indent="", subsequent_indent="    "))
+
 	elif set(viz_to_run) - set(VIZS) == set():
 		px = math.sqrt(len(viz_to_run))
 		py = math.ceil(len(viz_to_run) / px)
@@ -62,5 +63,6 @@ if __name__ == '__main__':
 			pyplot.savefig(args.output, dpi=300)
 		else:
 			pyplot.show()
+
 	else:
 		print("Invalid visualization(s) specified: {}".format(set(viz_to_run) - set(VIZS)))

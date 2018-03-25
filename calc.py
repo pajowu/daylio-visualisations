@@ -108,9 +108,9 @@ def plot_days_in_pixels(plt, data):
 
 
 def plot_months_in_pixels(plt, data, labels):
-	plt.imshow(np.fliplr(np.rot90(data, k=3)))
-	plt.xticks(np.arange(len(labels)), labels, rotation=90)
-	plt.yticks(np.arange(31, step=2), np.arange(1, 32, step=2))
+	plt.imshow(data)
+	plt.yticks(np.arange(len(labels)), labels)
+	plt.xticks(np.arange(31, step=2), np.arange(1, 32, step=2))
 
 
 def frange(start, stop):
