@@ -1,6 +1,6 @@
 # daylio visualisation
 
-This repository contains a collection of scritps that I wrote to visualize the data from [my mood tracker daylio](https://daylio.webflow.io/).
+This repository contains a collection of scripts that I wrote to visualize the data from [my mood tracker daylio](https://daylio.webflow.io/).
 
 All code is written in python3.
 
