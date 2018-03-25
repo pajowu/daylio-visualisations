@@ -1,6 +1,6 @@
-# daylio visualisation
+# daylio visualization
 
-This repository contains a collection of scripts that I wrote to visualize the data from [my mood tracker daylio](https://daylio.webflow.io/).
+This repository contains a collection of scripts that written to visualize the data from [the mood tracker "daylio"](https://daylio.webflow.io/).
 
 All code is written in python3.
 
@@ -35,7 +35,7 @@ To run the scripts without actual data, run them with the `--random-data` option
 
 ### Show all visualizations
 
-To show all vizualizations in one plot, simply run
+To show all visualizations in one plot, simply run
 
 ```
 ./main.py
@@ -45,8 +45,8 @@ To show all vizualizations in one plot, simply run
 
 ### Mood graph
 
-The mood graph is the classical visualisation chosen by daylio.
-It simply shows a graph of all the daily averages and colors the parts of the graph in the mood colors.
+The mood graph is the classical visualization chosen by daylio.
+It simply shows a graph of all the daily averages and colours the parts of the graph in the mood colours.
 
 ![Mood graph example](examples/mood_graph.png)
 
@@ -56,10 +56,10 @@ It simply shows a graph of all the daily averages and colors the parts of the gr
 
 ### Year in pixels
 
-The first visualisation is using matplotlib to generate grid with one row for each month and one pixel for each day.
+The first visualization is using matplotlib to generate grid with one row for each month and one pixel for each day.
 Black pixels are used if the month has less than 31 days.
 White pixels are days on which no mood was tracked.
-For all other pixels the colorscheme from daylio is used.
+For all other pixels the colour-scheme from daylio is used.
 
 ![Example year in pixels](examples/year_in_pixels.png)
 
@@ -67,15 +67,14 @@ For all other pixels the colorscheme from daylio is used.
 ./main.py -t year_in_pixels
 ```
 
-
 ### Average calculation
 
 Daylio uses a simple average of all mood values during one day to calculate the mood value of the day.
-I find this to be too simple, as it disproportianly counts time in which I often track my mood.
+This has the disadvantage of disproportionately valuing time in which I often track my mood.
 These scripts use a different method that is based on the [trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule).
 The calculation is done on a daily basis, i.e. it does not use the values of other days.
 
-![Difference in mood average using the two methos](examples/average_calculation.png)
+![Difference in mood average using the two methods](examples/average_calculation.png)
 
 ```
 ./main.py -t average_calculation
