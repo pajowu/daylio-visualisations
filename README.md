@@ -33,6 +33,16 @@ To run the scripts without actual data, run them with the `--random-data` option
 
 ## Visualisations
 
+### Show all visualizations
+
+To show all vizualizations in one plot, simply run
+
+```
+./main.py
+```
+
+![Example of all visualizations](examples/all.png)
+
 ### Mood graph
 
 The mood graph is the classical visualisation chosen by daylio.
