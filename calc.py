@@ -71,19 +71,12 @@ def read_random():
 	return dates
 
 
-def read_data():
-	if "--random-data" in sys.argv:
-		data = read_random()
-	else:
-		data = read_sqlite("entries.db")
-	return data
-
 
 def month_name(m):
 	return calendar.month_name[(m % 12) + 1]
 
 
-def plot_days_in_pixels(plt, data, out_file=None):
+def plot_days_in_pixels(plt, data):
 	first_year = datetime.datetime.fromordinal(sorted(data.keys())[0]).year
 	last_year = datetime.datetime.fromordinal(sorted(data.keys())[-1]).year
 
@@ -111,18 +104,13 @@ def plot_days_in_pixels(plt, data, out_file=None):
 	crop = data[rows.min():rows.max() + 1]
 	labels = list(map(month_name, range(rows.min(), rows.max() + 1)))
 
-	plot_months_in_pixels(plt, crop, labels, out_file)
+	plot_months_in_pixels(plt, crop, labels)
 
 
-def plot_months_in_pixels(plt, data, labels, out_file=None):
+def plot_months_in_pixels(plt, data, labels):
 	plt.imshow(np.fliplr(np.rot90(data, k=3)))
 	plt.xticks(np.arange(len(labels)), labels, rotation=90)
 	plt.yticks(np.arange(31, step=2), np.arange(1, 32, step=2))
-	if not out_file:
-		plt.show()
-	else:
-		plt.tight_layout()
-		plt.savefig(out_file, dpi=200)
 
 
 def frange(start, stop):

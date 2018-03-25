@@ -51,15 +51,12 @@ Black pixels are used if the month has less than 31 days.
 White pixels are days on which no mood was tracked.
 For all other pixels the colorscheme from daylio is used.
 
-To calculate your year in pixels, run
+![Example year in pixels](examples/year_in_pixels.png)
 
 ```
 ./main.py -t year_in_pixels
 ```
 
-The output image is saved into `year_in_pixels.png`.
-
-![Example year in pixels](examples/year_in_pixels.png)
 
 ### Average calculation
 

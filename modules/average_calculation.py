@@ -24,3 +24,4 @@ def plot(plt, data):
     for style in ["trapezium", "mean", "raw"]:
         plot_average(plt, data, style)
     plt.legend()
+    calc.plot_mood_axis(plt)
